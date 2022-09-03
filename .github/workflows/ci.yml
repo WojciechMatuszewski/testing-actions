@@ -30,3 +30,14 @@ jobs:
         with:
           name: output-${{ github.event.number }}
           path: output.txt
+
+      - name: Download the file to compare against
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          name: main
+          workflow: main.yml
+          branch: main
+          path: ./main
+
+      - name: Compare generated files
+        run: npm run compare
