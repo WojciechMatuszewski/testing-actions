@@ -23,7 +23,7 @@ jobs:
         run: pnpm install
 
       - name: Generate file
-        run: npm run script
+        run: npm run generate
 
       - name: Upload file
         uses: actions/upload-artifact@v3
