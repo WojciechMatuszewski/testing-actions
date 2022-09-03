@@ -1,0 +1,18 @@
+name: CI
+
+on:
+  pull_request:
+
+jobs:
+  run_script:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Generate file
+        run: npm run script
+
+      - name: Upload file
+        uses: actions/upload-artifact@v3
+        with:
+          name: output-${{ github.event.number }}

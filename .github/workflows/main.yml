@@ -1,0 +1,26 @@
+name: On PR merged
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  replace_artifact:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Find the merged PR number
+        uses: jwalton/gh-find-current-pr@v1
+        id: findPR
+        with:
+          state: closed
+      - name: Print PR number
+        run: echo "The PR number is ${PR}"
+        if: steps.findPR.outputs.number
+      # - name: Download artifact from PR
+      #   run: npm run script
+
+      # - name: Upload file
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: output-${{ github.event.number }}
