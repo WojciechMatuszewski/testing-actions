@@ -14,13 +14,17 @@ jobs:
         id: findPR
         with:
           state: closed
-      - name: Print PR number
-        run: echo "The PR number is ${PR}"
-        if: steps.findPR.outputs.number
-      # - name: Download artifact from PR
-      #   run: npm run script
 
-      # - name: Upload file
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: output-${{ github.event.number }}
+      - name: Print PR number
+        if: steps.findPR.outputs.number
+
+      - name: Download artifact from PR
+        uses: actions/download-artifact@v3
+        with:
+          name: output-${{steps.findPR.outputs.number}}
+
+      - name: Upload file
+        uses: actions/upload-artifact@v3
+        with:
+          name: main
+          path: output.txt
