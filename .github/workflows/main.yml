@@ -16,9 +16,11 @@ jobs:
           state: closed
 
       - name: Download artifact from PR
-        uses: actions/download-artifact@v3
+        uses: dawidd6/action-download-artifact@v2
         with:
           name: output-${{steps.findPR.outputs.number}}
+          workflow: ci.yml
+          pr: steps.findPR.outputs.number
 
       - name: Upload file
         uses: actions/upload-artifact@v3
