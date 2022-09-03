@@ -9,6 +9,19 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Setup dependency manager
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: pnpm install
+
       - name: Generate file
         run: npm run script
 
@@ -16,3 +29,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: output-${{ github.event.number }}
+          path: output.txt
