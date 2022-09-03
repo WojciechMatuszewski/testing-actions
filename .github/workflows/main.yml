@@ -20,7 +20,7 @@ jobs:
         with:
           name: output-${{steps.findPR.outputs.number}}
           workflow: ci.yml
-          pr: steps.findPR.outputs.number
+          pr: ${{steps.findPR.outputs.number}}
 
       - name: Upload file
         uses: actions/upload-artifact@v3
