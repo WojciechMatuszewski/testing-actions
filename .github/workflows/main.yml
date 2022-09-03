@@ -15,9 +15,6 @@ jobs:
         with:
           state: closed
 
-      - name: Print PR number
-        if: steps.findPR.outputs.number
-
       - name: Download artifact from PR
         uses: actions/download-artifact@v3
         with:
